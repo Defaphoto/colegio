@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-jun-2019 3:23:37 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="dto.Alumno" table="alumno" catalog="colegio" optimistic-lock="version">
+        <id name="idAlumno" type="int">
+            <column name="id_alumno" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreAlumno" type="string">
+            <column name="nombre_alumno" length="45" />
+        </property>
+        <property name="fechaNacAlumno" type="timestamp">
+            <column name="fecha_nac_alumno" length="19" />
+        </property>
+        <set name="notas" table="nota" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_alumno" />
+            </key>
+            <one-to-many class="dto.Nota" />
+        </set>
+    </class>
+</hibernate-mapping>
